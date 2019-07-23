@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Train Schedule-First Draft</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+  .jtron {
+      background: darkred;
+      color: white;
+      font-weight: bold;
+      margin-bottom: 1px;    
+  }
+  .card-header {
+      background: blue;
+      color: white;
+      line-height: 50%;
+      padding: 1px;
+  }
+  .card-body {
+      padding-bottom: 0px;
+      padding-top: 0px;
+      margin-bottom: 0px;
+  }
+  .card {
+      margin-bottom: 1px;
+  }
+  p {
+      margin-top: 10px;
+      margin-left: 5px;
+      margin-bottom: 8px;
+  }
+  .table {
+      margin-bottom: 0px;
+  }
+  thead {
+      font-size: 18px;
+  }
+  .form-group {
+      margin-top: 8px;
+      margin-bottom: 5px;
+  }
+  tr {
+      line-height: 75%;
+  }
+  .form-control {
+      padding: 0px;
+  }
+  label {
+      margin-bottom: 2px;
+  }
+  .btn {
+    background: blue;
+  }
+</style>
+
+</head>
+
+<body> 
+  <div class="container">
+    <div class="jumbotron text-center jtron">
+      <h1>Anytime is Train Time</h1>
+      <h5>Choo Choo. Chee Chee </h5>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <p>Current Train Schedule</p>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Train Name</th>
+                  <th scope="col">Destination</th>
+                  <th scope="col">Frequency(min)</th>
+                  <th scope="col">Next Arrival</th>
+                  <th scope="col">Minutes Away</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <!-- <th scope="row"></th> -->
+                    <td>1</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>Otto</td>
+                </tr>
+                <tr>
+                  <!-- <th scope="row">2</th> -->
+                    <td>2</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                    <td>some data here</td>
+                </tr>
+                <tr>
+                  <!-- <th scope="row">3</th> -->
+                    <td>3</td>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                    <td>some data here</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div> <!-- end Card div -->
+      </div>
+    </div>  <!-- end row for Current Train Schedule -->
+    
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <p>Add Train</p>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Train Name</label>
+                <input type="email" class="form-control" id="exampleInputEmail1">
+                  <!-- aria-describedby="emailHelp" placeholder="Enter email"> -->
+                  <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+              </div> <!-- end div form-group Train Name-->
+              
+              <div class="form-group">
+                <label for="exampleInputPassword1">Destination</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+                  <!-- placeholder="Password"> -->
+              </div>  <!-- end div form-group Destination-->
+              
+              <div class="form-group">
+                <label for="exampleInputPassword1">First Train Time (HH:mm - military time)</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">    
+              </div>  <!-- end div form-group First Train-->
+
+              <div class="form-group">
+                <label for="exampleInputPassword1">Frequency (min))</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+              </div>  <!-- end div form-group Frequency-->
+              
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div> <!-- end div card-body-->
+        </div> <!-- end div card -->
+      </div> <!-- end col div -->
+    </div> <!-- end row div -->
+  </div>  <!-- end container div--> 
+</body>
+</html>
