@@ -9,11 +9,11 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <!-- Moment.js Reference -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script> -->
  <!-- jQuery -->
- <script src="https://code.jquery.com/jquery.js"></script>
+ <!-- <script src="https://code.jquery.com/jquery.js"></script> -->
 
 <style>
   .jtron {
@@ -70,7 +70,7 @@
   <div class="container">
     <div class="jumbotron text-center jtron">
       <h1>Anytime is Train Time</h1>
-      <h5>Choo Choo. Chee Chee </h5>
+      <h5>Where would you like to go today?</h5>
     </div>
 
     <div class="row">
@@ -125,8 +125,7 @@
               <div class="form-group">
                 <label for="freq-input">Frequency (min))</label>
                 <input type="text" class="form-control" id="freq-input">
-              </div>  <!-- end div form-group Frequency-->
-              
+              </div>  <!-- end div form-group Frequency-->              
               <button id="add-train-btn" type="submit" class="btn btn-primary">Submit</button>
             </form>
           </div> <!-- end div card-body-->
@@ -134,139 +133,25 @@
       </div> <!-- end col div -->
     </div> <!-- end row div -->
   </div>  <!-- end container div-->
-   
-  <!-- *************** BEGIN JavaScript ***************-->
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-<!-- <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script> -->
-  <!-- LINKS FOR FIREBASE GO HERE -->
+
+  <!-- ^^^^^^ END HTML ^^^^^^^ -->
+
+  <!-- *********************** for rest of app *************************** -->
+  <!-- *************** see JavaScript file Train_Schedule.js ***************-->   
+ 
+ <!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- Link to Moment.js should go here -->
+<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  
+  <!-- LINKS FOR FIREBASE BELOW -->  
+  <!-- The core Firebase JS SDK is always required and must be listed first  -->  
 <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
-<script>
-// Myy app's Firebase configuration
-var config = {
-    apiKey: "AIzaSyBn63BLMj5pCG6dcsN0uSdIg8C3XTSQFvw",
-    authDomain: "train-times-a2370.firebaseapp.com",
-    databaseURL: "https://train-times-a2370.firebaseio.com",
-    projectId: "train-times-a2370",
-    storageBucket: "",
-    messagingSenderId: "983113251711",
-    appId: "1:983113251711:web:dd4f0854e258e05f"
-  };
-  // Initialize Firebase
-firebase.initializeApp(config);  
-  // Create a variable to reference the database
-var database = firebase.database();
-  // Initial variable Values
-var trainName = "";
-var dest = "";
-var firstTrain = "";
-var freq = "";
-  
-  // Capture Button Click for adding new Train
-$("#add-train-btn").on("click", function(event) {
-    // prevent page from refreshing when form tries to submit itself
-  event.preventDefault();
-    // Capture user inputs and store them into variables
-  var trainName = $("#trainName-input").val().trim();
-  var dest = $("#dest-input").val().trim();
 
-  var firstTrain = $("#firstTrain-input").val().trim();
-    // var firstTrain = moment($("#firstTrain-input").val().trim(), "HH:mm").format("X");
-    // firstTrain = moment($("#firstTrain-input").val().trim());
+  <!-- Calling javascript file with code -->
+<script src="assets/javascript/Train_Schedule.js"></script>
 
-    var freq = $("#freq-input").val().trim(); 
-    // console.log("First Train: "+firstTrain);     
-      // Capture inputs and store them in array newTrain
-    var newTrain = {
-          addName:       trainName,
-          addDest:       dest,
-          addFirstTrain: firstTrain,
-          addFreq:       freq,
-    };
-    // Uploads employee data to the database
-  database.ref().push(newTrain);
-
-      // database.ref().push(newTrain);
-      // Console log each of the user inputs to confirm we are receiving them
-    // console.log(newTrain.addName);
-    // console.log("CHECK");
-    // console.log(newTrain.addDest);
-    // console.log(newTrain.addFirstTrain); 
-    // console.log(newTrain.addFreq); 
-  //   var firstTrainConverted = moment(newTrain.addFirstTrain, "HH:mm").subtract(1, "years");
-  // console.log("Line 198? "+firstTrainConverted);  
-
-    // Clears all of the text-boxes
-  $("#trainName-input").val("");
-  $("#dest-input").val("");
-  $("#firstTrain-input").val("");
-  $("#freq-input").val("");
-
-});  // end database set  // and onclick add-train event   
-
-//Create Firebase event for adding newTrain data to the database and a row in the html when a user adds an entry
-database.ref().on("child_added", function(newTrainSnapshot) {
-  // console.log(newTrainSnapshot.val());
-
-    // Store everything into a variable.
-  var trainName =  newTrainSnapshot.val().addName;
-  var dest =       newTrainSnapshot.val().addDest;
-  var firstTrain = newTrainSnapshot.val().addFirstTrain;
-  var freq =       newTrainSnapshot.val().addFreq;
-  // console.log(freq);
-  // console.log("Line 218: "+firstTrain);
-
-// using variables to calculate Next Arrival and Minutes Away
-// var firstTrain
-// var temp = "11:00";
-// console.log("firstTrainZZ = "+firstTrain);
-// First Time (pushed back 1 year to make sure it comes before current time)
-var firstTrainConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
-// var tempConverted = moment(temp, "HH:mm");
-
-// console.log("temp: "+temp);
-// console.log("tempConverted: "+tempConverted);
-// Current Time
-var currentTime = moment();
-// console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
-
-// Difference between the times
-var diffTime = moment().diff(moment(firstTrainConverted), "minutes");
-// console.log("DIFFERENCE IN TIME: " + diffTime);
-
-// Time apart (remainder)
-var tRemainder = diffTime % freq;
-// console.log(tRemainder);
-
-// Minute Until Train
-var minutesAway = freq - tRemainder;
-// console.log("MINUTES TILL TRAIN: " + minutesAway);
-
-// Next Train
-var nextTrain = moment().add(minutesAway, "minutes");
-// console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
-// console.log("Next Train: "+moment(nextTrain).format("hh:mm"));
-var newRow = $("<tr>").append(
-    $("<td>").text(trainName),
-    $("<td>").text(dest),
-    $("<td>").text(freq),    
-    $("<td>").text(moment(nextTrain).format("hh:mm a")),
-        // moment().format('MMMM Do YYYY, h:mm:ss a');
-        // $("<td>").text(firstTrain),         
-    $("<td>").text(minutesAway),
-  );
-  var firstTrainConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
-  // console.log("How bout now? "+firstTrainConverted);  
-  // Append the new row to the table
-    $(".train-table > tbody").append(newRow);    
-    
-});
-// }, function(errorObject) {
-
-// // In case of error this will print the error
-// console.log("The read failed: " + errorObject.code);
-// });
-
-  </script>
 </body>
 </html>
